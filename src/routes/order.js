@@ -44,5 +44,24 @@ router.get('/orders/user/:user', async (req, res) => {
 		res.status(500).send(e);
 	}
 });
+router.patch('/orders/:id/status', async (req, res) => {
+	const id = req.params.id;
+	try {
+		const updateOrder = await Order.findByIdAndUpdate(
+			id,
+			{ status: req.body.status },
+			{
+				new: true
+			}
+		);
+		if (!updateOrder) {
+			return res.status(404).send({ error: 'Order Not Found' });
+		}
+
+		res.send(updateOrder);
+	} catch (e) {
+		res.status(500).send(e);
+	}
+});
 
 module.exports = router;
