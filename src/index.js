@@ -11,6 +11,12 @@ const port = process.env.PORT || 5001;
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+	res.send({
+		message: 'Server Works'
+	});
+});
+
 app.use(orderRouter);
 app.use(userRouter);
 app.use(productRouter);
