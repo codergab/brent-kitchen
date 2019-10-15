@@ -2,8 +2,13 @@ const express = require('express');
 const User = require('../models/user');
 const router = new express.Router();
 
-router.get('/users', (req, res) => {
-	res.send('user Seen');
+router.get('/users', async (req, res) => {
+	try {
+		const users = await User.find({});
+		res.send(users);
+	} catch (err) {
+		res.status(500).send(err);
+	}
 });
 
 router.post('/users', async (req, res) => {
