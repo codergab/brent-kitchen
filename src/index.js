@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+// require('dotenv').config();
 require('./db/mongoose');
 const orderRouter = require('./routes/order');
 const userRouter = require('./routes/user');
@@ -14,7 +14,8 @@ app.use(cors());
 
 app.get('/', (req, res) => {
 	res.send({
-		message: 'Server Works'
+		message: 'Server Works',
+		configs: process.env
 	});
 });
 
